@@ -1,0 +1,79 @@
+create table funcionario(
+idfuncionario bigint auto_increment,
+nome varchar(50) not null,
+senha varchar(15) not null,
+telefone varchar(15) not null,
+cpf varchar(15) not null,
+cargo varchar(15) not null,
+sexo varchar(15) not null, 
+salario double not null,
+primary key(idfuncionario));
+
+create table quarto(
+idquarto bigint auto_increment,
+num int not null,
+valor double not null,
+tipo varchar(20) not null,
+andar varchar(20) not null,
+status varchar(30) not null,
+numcomodo int not null,
+primary key(idquarto));
+
+create table reserva(
+idreserva bigint auto_increment,
+dataentrada varchar(20) not null,
+datasaida varchar(20) not null,
+idfuncionario long,
+idquarto long,
+idhospede long,
+primary key(idreserva),
+foreign key(idquarto) references quarto(idquarto),
+foreign key(idfuncionario) references funcionario(idfuncionario),
+foreign key(idhospede) references hospede(idhospede)
+);
+
+create table hospede(
+idhospede bigint auto_increment,
+nome varchar(50) not null,
+cpf varchar(15) not null,
+endereco varchar(50) not null,
+telefone varchar(15) not null,
+rg long  not null,
+cidade varchar(50) not null,
+sexo varchar(15) not null, 
+
+primary key(idhospede));
+
+
+
+
+
+insert into funcionario(idfuncionario,nome,senha,telefone,cpf,cargo,sexo,salario) 
+values(null,"Vinicius","12345","989419700","04167933029","Gerente","Masculino","2000");
+
+insert into funcionario(idfuncionario,nome,senha,telefone,cpf,cargo,sexo,salario) 
+values(null,"Felipe","12345","995419710","24167933029","Gerente","Masculino","2000");
+
+insert into hospede(idhospede,nome,cpf,endereco,telefone,rg,cidade,sexo) 
+values(null,"João","24167933029","Rua França, 415","995419710",51451251,"Canoas","Masculino");
+
+insert into hospede(idhospede,nome,cpf,endereco,telefone,rg,cidade,sexo) 
+values(null,"Maria","24167933029","Rua França, 415","995419710",51451251,"Canoas","Feminino");
+
+
+
+insert into quarto(idquarto,num,valor,tipo,andar,status,numcomodo) 
+values(null,71,200,"Luxo","9","Vago",2);
+
+insert into quarto(idquarto,num,valor,tipo,andar,status,numcomodo) 
+values(null,72,200,"Luxo","9","Vago",3);
+
+insert into quarto(idquarto,num,valor,tipo,andar,status,numcomodo) 
+values(null,50,150,"Casal","5","Vago",2);
+
+insert into quarto(idquarto,num,valor,tipo,andar,status,numcomodo) 
+values(null,50,400,"Cobertura","10","Vago",3);
+
+insert into quarto(idquarto,num,valor,tipo,andar,status,numcomodo) 
+values(null,50,100,"Solteiro","2","Vago",2);
+
